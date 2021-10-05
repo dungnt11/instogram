@@ -42,16 +42,23 @@ const ProfileTab = (props) => {
   }, []);
 
   const fetchFeed = async (userID) => {
-    const posts = await axios.get(`/api/users/self/${userID}`);
-    const img = posts.data.profile_picture;
-    setLoaded(false);
-    setData(posts.data.data);
-    setProfileImg(img);
-    renderHeader();
+    try {
+      const posts = await axios.get(`/api/users/self/${userID}`);
+      const img = posts.data.profile_picture;
+      setLoaded(false);
+      setData(posts.data.data);
+      setProfileImg(img);
+      renderHeader();
+    } catch (error) {
+      
+    } finally {
+      setLoaded(false);
+    }
   };
 
   async function logOut() {
     await AsyncStorage.removeItem('@user');
+    store.delUser();
     props.navigation.navigate("AuthStack");
   }
 

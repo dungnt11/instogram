@@ -74,7 +74,8 @@ export default function ImagePickerExample(props) {
         }
       );
       store.addNewPost(res.data);
-      props.navigation.navigate("HomeScreen");
+      props.navigation.navigate("HomeTab");
+      store.setRerender();
     } catch (error) {
       console.log(error);
     } finally {

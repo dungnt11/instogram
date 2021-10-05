@@ -26,30 +26,30 @@ import { store } from "../../../store/user";
 const { width, height } = Dimensions.get("window");
 
 const HomeTab = (props) => {
-  const navigationOptions = ({ navigation }) => ({
-    title: "Instagram",
-    headerTitleStyle: styles.headerText,
-    headerRight: (
-      <TouchableOpacity
-        style={{
-          paddingHorizontal: 10,
-        }}
-        onPress={() => navigation.goBack()}
-      >
-        <FontAwesome name="paper-plane" size={24} color="black" />
-      </TouchableOpacity>
-    ),
-    headerLeft: (
-      <TouchableOpacity
-        style={{
-          paddingHorizontal: 10,
-        }}
-        onPress={() => navigation.goBack()}
-      >
-        <FontAwesome name="camera" size={24} color="black" />
-      </TouchableOpacity>
-    ),
-  });
+  // const navigationOptions = ({ navigation }) => ({
+  //   title: "Instagram",
+  //   headerTitleStyle: styles.headerText,
+  //   headerRight: (
+  //     <TouchableOpacity
+  //       style={{
+  //         paddingHorizontal: 10,
+  //       }}
+  //       onPress={() => navigation.goBack()}
+  //     >
+  //       <FontAwesome name="paper-plane" size={24} color="black" />
+  //     </TouchableOpacity>
+  //   ),
+  //   headerLeft: (
+  //     <TouchableOpacity
+  //       style={{
+  //         paddingHorizontal: 10,
+  //       }}
+  //       onPress={() => navigation.goBack()}
+  //     >
+  //       <FontAwesome name="camera" size={24} color="black" />
+  //     </TouchableOpacity>
+  //   ),
+  // });
 
   const [loaded, setLoaded] = useState(true);
   const [data, setData] = useState(null);
@@ -59,8 +59,8 @@ const HomeTab = (props) => {
   const [loadingComment, setLoadingComment] = useState(false);
 
   useEffect(() => {
-    fetchFeed(store._id);
-  }, []);
+    fetchFeed(store.user._id);
+  }, [store.user._id]);
 
   const reActionPost = async (idPost) => {
     const userID = store.userInfo._id;
@@ -265,13 +265,17 @@ const HomeTab = (props) => {
   };
 
   const fetchFeed = async (userID) => {
-    const posts = await axios.get(`/api/feeds/${userID}`);
-
-    const comments = await makeCommentsList(posts.data);
-
-    setLoaded(false);
-    setData(posts.data);
-    setComments(comments);
+    try {
+      const posts = await axios.get(`/api/feeds/${userID}`);
+      const comments = await makeCommentsList(posts.data);
+  
+      setData(posts.data);
+      setComments(comments);
+    } catch (error) {
+      
+    } finally {
+      setLoaded(false);
+    }
   };
 
   return (
@@ -280,11 +284,6 @@ const HomeTab = (props) => {
       <View style={styles.headerPanel}>
         <Text style={styles.headerLogo}>Instagram</Text>
       </View>
-      <TouchableOpacity onPress={() => {
-        AsyncStorage.removeItem('@user');
-      }}>
-        <Text>Clean</Text>
-      </TouchableOpacity>
       <FlatList
         style={styles.listFeeds}
         data={data}

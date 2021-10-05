@@ -6,6 +6,22 @@ class Store {
     avatar: '',
     posts: [],
     currentID: '',
+    reRender: -1,
+  }
+
+  setRerender() {
+    this.user.reRender = Math.random();
+  }
+
+  delUser() {
+    this.user = {
+      _id: '',
+      username: '',
+      displayName: '',
+      avatar: '',
+      posts: [],
+      currentID: '',
+    }
   }
 
   setUser(user) {
