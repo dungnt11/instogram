@@ -1,0 +1,29 @@
+{
+  "commands": [
+    {
+      "text": "$(file-directory)",
+      "command": "workbench.view.explorer",
+      "tooltip": "Explorer"
+    },
+    {
+      "text": "$(search)",
+      "command": "workbench.view.search",
+      "tooltip": "Search"
+    },
+    {
+      "text": "$(repo-forked)",
+      "command": "workbench.view.scm",
+      "tooltip": "Source Control"
+    },
+    {
+      "text": "$(bug)",
+      "command": "workbench.view.debug",
+      "tooltip": "Debug"
+    },
+    {
+      "text": "$(package)",
+      "command": "workbench.view.extensions",
+      "tooltip": "Extensions"
+    }
+  ]
+}
