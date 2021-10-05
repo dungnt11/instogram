@@ -60,7 +60,7 @@ const HomeTab = (props) => {
 
   useEffect(() => {
     fetchFeed(store.user._id);
-  }, [store.user._id]);
+  }, []);
 
   const reActionPost = async (idPost) => {
     const userID = store.userInfo._id;
