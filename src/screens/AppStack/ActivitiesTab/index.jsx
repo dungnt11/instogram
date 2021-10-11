@@ -6,56 +6,25 @@ import { store } from "../../../store/user";
 import { FlatList } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 const ActivitiesTab = () => {
-  // const [activityList, setActivityList] = useState([]);
+  const [activityList, setActivityList] = useState([]);
 
-  // const fetchActivities = async () => {
-  //   try {
-  //     const userId = store.user._id;
-  //     const res = await axios.get(`/api/history/:${userId}`);
-  //     setActivityList(res);
-  //     console.log('Thong bao: ', res)
-  //   } catch (e) {
-  //     console.log('Lỗi api thông báo: ', e);
-  //   }
-  // }
+  const fetchActivities = async () => {
+    try {
+      const userId = store.user._id;
+      const res = await axios.get(`/api/history/${userId}`);
+      setActivityList(res.data);
+    } catch (e) {
+      console.log('Lỗi api thông báo: ', e);
+    }
+  }
 
-  // useEffect(() => {
-  //   fetchActivities();
-  // },[])
-
-  const activityList = [
-    {
-      id: "1",
-      myID: {
-        displayName: "Dũng Nguyễn",
-        avatar:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Aw08EMIINuHN2E_m6rmNBJSn9pdAUsNBKrjMc8SQKeeNjJ_rYdUUGq2QZP3R87Seg_c&usqp=CAU",
-      },
-      messenger: "Đã thích bài viết của bạn",
-    },
-    {
-      id: "2",
-      myID: {
-        displayName: "Dũng Nguyễn",
-        avatar:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Aw08EMIINuHN2E_m6rmNBJSn9pdAUsNBKrjMc8SQKeeNjJ_rYdUUGq2QZP3R87Seg_c&usqp=CAU",
-      },
-      messenger: "Đã thích bài viết của bạn",
-    },
-    {
-      id: "3",
-      myID: {
-        displayName: "Dũng Nguyễn",
-        avatar:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7Aw08EMIINuHN2E_m6rmNBJSn9pdAUsNBKrjMc8SQKeeNjJ_rYdUUGq2QZP3R87Seg_c&usqp=CAU",
-      },
-      messenger: "Đã thích bài viết của bạn",
-    },
-  ];
+  useEffect(() => {
+    fetchActivities();
+  },[])
 
   const createActivities = (item, index) => {
     return (
-      <KeyboardAwareScrollView style={styles.list}>
+      <KeyboardAwareScrollView key={index} style={styles.list}>
         <Image source={{ uri: item.myID.avatar }} style={styles.listImg} />
         <Text style={styles.listContent}>
           <Text style={styles.author}>{item.myID.displayName}{" "}</Text>
