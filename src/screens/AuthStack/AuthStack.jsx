@@ -8,15 +8,15 @@ import { store } from "../../store/user";
 const Stack = createStackNavigator();
 
 const AuthStack = (props) => {
-  React.useEffect(() => {
-    AsyncStorage
-      .getItem('@user')
-      .then((res) => JSON.parse(res))
-      .then((user) => {
-        props.navigation.navigate('AppStack');
-        store.setUser(user);
-      }).catch(console.log);
-  }, []);
+  // React.useEffect(() => {
+  //   AsyncStorage
+  //     .getItem('@user')
+  //     .then((res) => JSON.parse(res))
+  //     .then((user) => {
+  //       props.navigation.navigate('AppStack');
+  //       store.setUser(user);
+  //     }).catch(console.log);
+  // }, []);
 
   return (
     <Stack.Navigator

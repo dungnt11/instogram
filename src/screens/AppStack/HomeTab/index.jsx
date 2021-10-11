@@ -60,7 +60,7 @@ const HomeTab = (props) => {
 
   useEffect(() => {
     fetchFeed(store.user._id);
-  }, [store.user._id]);
+  }, []);
 
   const reActionPost = async (idPost) => {
     const userID = store.userInfo._id;
@@ -142,7 +142,7 @@ const HomeTab = (props) => {
         ) : (
           <Video
             source={{
-              uri: "https://dung.awe7.com/api/video/6874CAE5-3CAE-41FE-98FC-5914DA1C8EB6.mov",
+              uri: "https://dev.ehandytech/api/video/6874CAE5-3CAE-41FE-98FC-5914DA1C8EB6.mov",
             }}
             style={{ width, height: 250 }}
             useNativeControls
