@@ -2,7 +2,7 @@ import { Feather, Foundation, Ionicons, Entypo } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 // import { StyleSheet } from "react-native";
-// import ActivitiesTab from "./ActivitiesTab/index";
+import ActivitiesTab from "./ActivitiesTab/index";
 import HomeTab from "./HomeTab";
 import ProfileTab from "./ProfileTab";
 // import SearchTab from "./SearchTab";
@@ -60,7 +60,17 @@ const AppStack = () => {
           ),
         }}
       /> */}
-      {/* <Tab.Screen
+      <Tab.Screen
+        name="ChatTab"
+        component={ChatTab}
+        options={{
+          tabBarLabel: "Chat",
+          tabBarIcon: ({ focused }) => (
+            <Entypo name="chat" size={30} color={focused ? "#fff" : "gray"} />
+          ),
+        }}
+      />
+      <Tab.Screen
         name="ActivitiesTab"
         component={ActivitiesTab}
         options={{
@@ -68,20 +78,6 @@ const AppStack = () => {
           tabBarIcon: ({ focused }) => (
             <Foundation
               name="heart"
-              size={30}
-              color={focused ? "#fff" : "gray"}
-            />
-          ),
-        }}
-      /> */}
-      <Tab.Screen
-        name="ChatTab"
-        component={ChatTab}
-        options={{
-          tabBarLabel: "Chat",
-          tabBarIcon: ({ focused }) => (
-            <Entypo
-              name="chat"
               size={30}
               color={focused ? "#fff" : "gray"}
             />
